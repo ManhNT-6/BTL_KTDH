@@ -92,16 +92,16 @@ void display() {
 int main(int argc, char** argv) {
     triangle.input();
 
-	if (!triangle.IsTriangle()) cout << "Khong the tao thanh tam giac";
+	if (triangle.IsTriangle()) {
+	    glutInit(&argc, argv);
+	    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	    glutInitWindowSize(500, 500);
+	    glutCreateWindow("Draw Triangle");
 	
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-    glutInitWindowSize(500, 500);
-    glutCreateWindow("Draw Triangle");
-
-    init();
-    glutDisplayFunc(display);
-    glutMainLoop();
-
-    return 0;
+	    init();
+	    glutDisplayFunc(display);
+	    glutMainLoop();
+	}
+	else cout << "Khong the tao thanh tam giac"; 
+	return 0;
 }
