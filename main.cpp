@@ -7,7 +7,7 @@ using namespace std;
 
 Triangle triangle;
 
-void init() {
+void initPanel() {
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -30,10 +30,18 @@ int main(int argc, char** argv) {
 	    glutInitWindowSize(500, 500);
 	    glutCreateWindow("Draw Triangle");
 	
-	    init();
-	    glutDisplayFunc(display);
+	    initPanel();
+	    
+	    cout << "Nhap goc quay: ";
+		float angle;
+		cin >> angle;
+		triangle.RotateAroundOrigin(angle);
+		triangle.DrawTriangle(); 
+		
+		glutDisplayFunc(display);
 	    glutMainLoop();
 	}
 	else cout << "Khong the tao thanh tam giac"; 
+	
 	return 0;
 }
