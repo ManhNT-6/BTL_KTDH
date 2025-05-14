@@ -24,24 +24,40 @@ void display() {
 int main(int argc, char** argv) {
     triangle.input();
 
-	if (triangle.IsTriangle()) {
-	    glutInit(&argc, argv);
-	    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-	    glutInitWindowSize(500, 500);
-	    glutCreateWindow("Draw Triangle");
-	
-	    initPanel();
-	    
-	    cout << "Nhap goc quay: ";
-		float angle;
-		cin >> angle;
-		triangle.RotateAroundOrigin(angle);
-		triangle.DrawTriangle(); 
-		
-		glutDisplayFunc(display);
-	    glutMainLoop();
+	if (!triangle.IsTriangle())  
+	{
+		cout << "Triangle Invalid" << endl;
+		return 0;
 	}
-	else cout << "Khong the tao thanh tam giac"; 
+	
+	int typeRotate;    
+	cout << "Quay quanh goc toa do (0) | Quay quanh 1 diem bat ky (1) " ;
+	cin >> typeRotate;
+	
+	float xq = 0;
+	float yq = 0;
+	
+	if (typeRotate)	
+	{
+		cout << "Nhap toa do tam quay: " ;
+		cin >> xq >> yq;
+	}
+	
+	float angle;
+	cout << "Nhap goc quay: " ;
+	cin >> angle;
+	
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutInitWindowSize(500, 500);
+	glutCreateWindow("Draw Triangle");
+	initPanel();
+	
+	triangle.RotateAroundAPoint(xq,yq,angle);
+	triangle.DrawTriangle(); 
+		
+	glutDisplayFunc(display);
+	glutMainLoop();
 	
 	return 0;
 }

@@ -2,3 +2,4 @@
 Makefile.win
 triangle.o
 main.o
+*.layout

@@ -75,15 +75,50 @@ public:
     }
     
     void RotateAroundOrigin(float angle){
+    	
+    	// matrix 
+		//       cos 		sin 		 0
+		//      -sin 		cos 		 0
+		// 		  0			 0 		  	 1 
+		
+		
     	float angleRadian = angle * PI / 180.0; 
     	float sinAngle = sin(angleRadian);
     	float cosAngle = cos(angleRadian);
+		
+		cout << "=== Start Caculate Point ===" << endl; 
 		
 		for (int i =0;i<3;i++){
 			float x = point[i][0];
 			float y = point[i][1];
 			point[i][0] = x*cosAngle - y*sinAngle;
 			point[i][1] = x*sinAngle + y*cosAngle;
-		}
+			
+			cout << "Toa do dinh " << i+1 << " sau khi quay: " << point[i][0] << " " << point[i][1] <<endl;
+ 		}
+	}
+	
+	void RotateAroundAPoint(float xq, float yq, float angle){
+		
+		// matrix 
+		//       cos 					sin 		 0
+		//      -sin 					cos 		 0
+		// x(1-cos) + y*sin  -x*sin + y(1-cos)   	 1 
+		
+		
+		float angleRadian = angle * PI / 180.0;
+		float sinAngle = sin(angleRadian);
+    	float cosAngle = cos(angleRadian);
+    	
+    	cout << "=== Start Caculate Point ===" << endl; 
+		
+		for (int i =0;i<3;i++){
+			float x = point[i][0];
+			float y = point[i][1];
+			point[i][0] = x*cosAngle - y*sinAngle + xq*(1-cosAngle) + yq*sinAngle ;
+			point[i][1] = x*sinAngle + y*cosAngle - xq*sinAngle + yq*(1-cosAngle) ;
+			
+			cout << "Toa do dinh " << i+1 << " sau khi quay: " << point[i][0] << " " << point[i][1] <<endl;
+ 		}
 	}
 };
